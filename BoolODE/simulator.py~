@@ -32,7 +32,7 @@ def eulersde(f,G,y0,tspan,pars,seed=0.,dW=None):
     :param seed: Seed to initialize random number generator
     :type seed: float
     :returns:
-        - y: Array containing the time course of state variables and their velocities.
+        - y: Array containing the time course of state variables 
     """
     # From sdeint implementation
     N = len(tspan)
@@ -40,31 +40,26 @@ def eulersde(f,G,y0,tspan,pars,seed=0.,dW=None):
     maxtime = tspan[-1]
     # allocate space for result
     d = len(y0)
-    y = np.zeros((N+1, 2*d), dtype=type(y0[0]))    
-    position_idx = range(d)
-    velocity_idx = [i + d for i in position_idx]
+    y = np.zeros((N+1, d), dtype=type(y0[0]))
+
     if dW is None:
         # pre-generate Wiener increments (for d independent Wiener processes):
         dW = deltaW(N, d, h, seed=seed)
-    y[0][position_idx] = y0
+    y[0] = y0
     currtime = 0
     n = 0
    
     while currtime < maxtime:
         tn = currtime
-        yn = y[n][position_idx]
+        yn = y[n]
         dWn = dW[n,:]
-        vn = f(yn, tn,pars)
-        y[n+1][position_idx] = yn + vn*h + np.multiply(G(yn, tn),dWn)
-        y[n][velocity_idx] = vn
+        y[n+1] = yn + f(yn, tn,pars)*h + np.multiply(G(yn, tn),dWn)
         # Ensure positive terms
-        for i in position_idx:
+        for i in range(len(y[n+1])):
             if y[n+1][i] < 0:
                 y[n+1][i] = yn[i]
         currtime += h
         n += 1 
-    # fill in velocity for final timepoint
-    y[n][velocity_idx] = f(y[n], currtime,pars)
     return y
 
 def simulateModel(Model, y0, parameters,isStochastic, tspan,seed):
