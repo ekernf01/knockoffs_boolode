@@ -316,7 +316,10 @@ def simulateAndSample(argdict):
     ## timepoints
     tps = [i for i in range(1,len(tspan))]
     ## gene ids
-    gid = [i for i,n in varmapper.items() if 'x_' in n]
+    gid    = [i for i,n in varmapper.items() if 'x_' in n]
+    ## Traanscript and protein IDs
+    tidpid = [i for i,n in varmapper.items()]    
+    tnamepname = [n for i,n in varmapper.items()]
     outPrefix = outPrefix + '/simulations/'
     while retry:
         seed += 1000
@@ -328,11 +331,17 @@ def simulateAndSample(argdict):
         P = P.T
         retry = False
         ## Extract Time points
-        subset = P[gid,:][:,tps]
+        subset = P[tidpid,:][:,tps]        
         df = pd.DataFrame(subset,
-                          index=pd.Index(genelist),
+                          index=pd.Index(tnamepname),
                           columns = ['E' + str(cellid) +'_' +str(i)\
                                      for i in tps])
+        # Modified from original:
+        # subset = P[gid,:][:,tps]
+        # df = pd.DataFrame(subset,
+        #                   index=pd.Index(genelist),
+        #                   columns = ['E' + str(cellid) +'_' +str(i)\
+        #                              for i in tps])
         df.to_csv(outPrefix + 'E' + str(cellid) + '.csv')        
         ## Heuristic:
         ## If the largest value of a protein achieved in a simulation is
