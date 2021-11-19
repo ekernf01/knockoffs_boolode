@@ -129,7 +129,6 @@ def Experiment(mg, Model,
     argdict['proteinIndex'] = proteinIndex
     argdict['revvarmapper'] = revvarmapper
     argdict['x_max'] = mg.kineticParameterDefaults['x_max']
-
     if settings['sample_cells']:
         # pre-define the time points from which a cell will be sampled
         # per simulation
