@@ -1,12 +1,22 @@
-*NOTE: The BoolODE code is being refactored, and is currently being tested. Please use the V0.1 release for the version of the code used in the BEELINE publication*
 
+----
+
+Modified by Eric Kernfeld on 2021 Nov 19 to output protein levels and rates of change in addition to mRNA levels. New usage for toy networks:
+
+`python boolode.py --config config-files/beeline-inputs-synthetic.yaml`
+
+No changes were made to the installation; the existing `requirements.txt` was used.
+
+----
 
 # BoolODE
+
 Git Repo for converting Boolean models to ODE models and performing stochastic simulations.
 
 Find the documentation for BoolODE at [https://murali-group.github.io/Beeline/BoolODE.html](https://murali-group.github.io/Beeline/BoolODE.html).
 
 ## Usage
+
 `python boolode.py --config path/to/config.yaml`
 
 ## Configuration 
