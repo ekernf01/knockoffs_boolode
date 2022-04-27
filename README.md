@@ -5,9 +5,9 @@ Modified by Eric Kernfeld on 2021 Nov 19 to output protein levels and rates of c
 
 `python boolode.py --config config-files/beeline-inputs-synthetic.yaml`
 
-No changes were made to the installation; the existing `requirements.txt` was used.
-For more info on this project, see [the central repo](https://github.com/ekernf01/knockoffs_paper). 
-The original README follows. 
+We made these modifications in order to evaluate model-X knockoffs as a tool for causal inference about transcription. For more info on this project, see [the central repo](https://github.com/ekernf01/knockoffs_paper). 
+
+No changes were made to the installation; the existing `requirements.txt` was used. The original README follows. 
 
 ----
 
