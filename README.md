@@ -1,11 +1,9 @@
 
 ----
 
-Modified by Eric Kernfeld on 2021 Nov 19 to output protein levels and rates of change in addition to mRNA levels. New usage for toy networks:
+We made some modifications in order to evaluate model-X knockoffs as a tool for causal inference about transcription. For more info on this project, see [the central repo](https://github.com/ekernf01/knockoffs_paper). The main modifications are to output protein levels and rates of change in addition to mRNA levels. New usage for toy networks:
 
 `python boolode.py --config config-files/beeline-inputs-synthetic.yaml`
-
-We made these modifications in order to evaluate model-X knockoffs as a tool for causal inference about transcription. For more info on this project, see [the central repo](https://github.com/ekernf01/knockoffs_paper). 
 
 No changes were made to the installation; the existing `requirements.txt` was used. The original README follows. 
 
